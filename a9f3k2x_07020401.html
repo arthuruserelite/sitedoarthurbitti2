@@ -2,31 +2,61 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Privado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área Restrita</title>
 
 <style>
 body {
-    background: #121212;
+    background-color: #121212;
     color: white;
-    font-family: Arial;
-    text-align: center;
-    margin-top: 100px;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
 }
 
 a {
-    display: block;
-    margin: 15px;
+    border: 2px solid #00ff88;
     color: #00ff88;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    background: #00ff88;
+    color: #121212;
 }
 </style>
 </head>
 
 <body>
 
-<h2>🔓 Acesso liberado</h2>
+<h2>🔓 Acesso Liberado</h2>
 
-<a href="https://1drv.ms/v/c/b7955fde53ea9d7d/IQAFRVFqObE8Qbq9HuiuFvvAAef_-IXJf_fXBI5z_JANiRg?e=kzTWqQ">Campo Pedro 1</a>
-<a href="https://1drv.ms/f/c/b7955fde53ea9d7d/IgCls_cXebWVSLDpN2thj01RARlftsVRmdGnHE1qyyLS2aQ?e=p0VSzl">Casamento Sabrina</a>
+<div class="links">
+    <a href="https://1drv.ms/v/c/b7955fde53ea9d7d/IQAFRVFqObE8Qbq9HuiuFvvAAef_-IXJf_fXBI5z_JANiRg?e=kzTWqQ" target="_blank">
+        Campo Pedro 1
+    </a>
+
+    <a href="https://1drv.ms/f/c/b7955fde53ea9d7d/IgCls_cXebWVSLDpN2thj01RARlftsVRmdGnHE1qyyLS2aQ?e=p0VSzl" target="_blank">
+        Casamento Sabrina
+    </a>
+</div>
+
+<br>
+<a href="index.html" style="font-size:12px; color:#888;">← voltar</a>
 
 </body>
 </html>
