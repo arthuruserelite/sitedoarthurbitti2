@@ -1,62 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Área Restrita</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Restrita | Acesso Liberado</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-<style>
-body {
-    background-color: #121212;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.3);
+            --bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
 
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 300px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
 
-a {
-    border: 2px solid #00ff88;
-    color: #00ff88;
-    padding: 15px;
-    text-align: center;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% -20%, #00ff8822, transparent),
+                radial-gradient(circle at 0% 100%, #00ff8811, transparent);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-a:hover {
-    background: #00ff88;
-    color: #121212;
-}
-</style>
+        h2 {
+            font-weight: 800;
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
+            text-align: center;
+        }
+
+        .links-container {
+            width: 100%;
+            max-width: 450px; /* Aumentei um pouco a largura máxima */
+            display: flex;
+            justify-content: center;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .link-card-square {
+            background: var(--card-bg);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            color: #efefef;
+            
+            /* Formato mais quadrado e robusto */
+            width: 100%;
+            aspect-ratio: 1 / 0.8; /* Quase um quadrado perfeito */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            padding: 40px;
+            border-radius: 32px; /* Bordas bem arredondadas como pediu */
+            
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+            
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .link-card-square:hover {
+            background: var(--primary);
+            color: #000;
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px var(--primary-glow);
+            border-color: var(--primary);
+        }
+
+        /* Ícone opcional dentro do quadrado */
+        .link-card-square::before {
+            content: "🌐";
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .voltar {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .voltar:hover {
+            color: var(--primary);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
 
-<h2>🔓 Acesso Liberado</h2>
+    <h2>🔓 Acesso Liberado</h2>
 
-<div class="links">
-    <a href="https://arthuruserelite.github.io/news/" target="_blank">
-        Campo Pedro site proprio
-    </a>
+    <div class="links-container">
+        
+        <a href="https://arthuruserelite.github.io/news/" class="link-card-square" target="_blank">
+            Campo Pedro<br>Site Próprio
+        </a>
 
-    <a href="https://1drv.ms/f/c/b7955fde53ea9d7d/IgCls_cXebWVSLDpN2thj01RARlftsVRmdGnHE1qyyLS2aQ?e=p0VSzl" target="_blank">
-        Casamento Sabrina
-    </a>
-</div>
+    </div>
 
-<br>
-<a href="index.html" style="font-size:12px; color:#888;">← voltar</a>
+    <a href="index.html" class="voltar">← Voltar ao Início</a>
 
 </body>
 </html>
