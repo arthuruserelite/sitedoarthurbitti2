@@ -1,117 +1,221 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meus Links</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Links | Bio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-<style>
-body {
-    background-color: #121212;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-glow: rgba(0, 255, 136, 0.3);
+            --bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
 
-.links-container {
-    width: 100%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
 
-.link-card {
-    border: 2px solid #00ff88;
-    color: #00ff88;
-    padding: 15px;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-}
+        body {
+            background-color: var(--bg);
+            /* Adiciona um efeito de profundidade no fundo */
+            background-image: 
+                radial-gradient(circle at 50% -20%, #00ff8822, transparent),
+                radial-gradient(circle at 0% 100%, #00ff8811, transparent);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-.link-card:hover {
-    background: #00ff88;
-    color: #121212;
-}
+        h2 {
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
 
-.senha-container {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-}
+        .links-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-#loading {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #121212;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+        .link-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #efefef;
+            padding: 18px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: block;
+        }
 
-.loader {
-    border: 4px solid #222;
-    border-top: 4px solid #00ff88;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+        .link-card:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--primary-glow);
+            border-color: var(--primary);
+        }
 
-@keyframes spin {
-    to { transform: rotate(720deg); }
-}
-</style>
+        /* Destaque para Área Restrita */
+        .btn-lock {
+            border: 1px dashed var(--primary);
+            color: var(--primary);
+        }
+
+        .senha-container {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        input[type="password"] {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="password"]:focus {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.1);
+        }
+
+        button.btn-entrar {
+            background: var(--primary);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        button.btn-entrar:hover {
+            filter: brightness(1.2);
+        }
+
+        /* Loading Overlay */
+        #loading {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .loader {
+            border: 3px solid #222;
+            border-top: 3px solid var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            animation: spin 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
 
-<h2>Meus Links</h2>
+    <h2>Meus Links</h2>
 
-<div class="links-container">
+    <div class="links-container">
+        <a href="https://www.instagram.com/acarllos_/" class="link-card" target="_blank">Instagram Principal</a>
+        <a href="https://www.instagram.com/artheruth/" class="link-card" target="_blank">Instagram Secundário</a>
+        <a href="https://luluflix.luluhub.shop/web/#/home" class="link-card" target="_blank">LULUFLIX</a>
+        
+        <div class="link-card btn-lock" onclick="mostrarSenha()">Área Restrita 🔒</div>
 
-    <a href="https://www.instagram.com/acarllos_/" class="link-card" target="_blank">Instagram Principal</a>
-    <a href="https://www.instagram.com/artheruth/" class="link-card" target="_blank">Instagram Secundário</a>
-<a href="https://luluflix.luluhub.shop/web/#/home" class="link-card" target="_blank">LULUFLIX </a>
-    <div class="link-card" onclick="mostrarSenha()">Área Restrita 🔒</div>
-
-    <div id="senha" class="senha-container">
-        <input type="password" id="input">
-        <button onclick="entrar()">Entrar</button>
+        <div id="senha" class="senha-container">
+            <input type="password" id="input" placeholder="Digite a senha">
+            <button class="btn-entrar" onclick="entrar()">Acessar Agora</button>
+        </div>
     </div>
 
-</div>
+    <div id="loading">
+        <div class="loader"></div>
+        <p style="color: var(--primary); font-weight: 600; letter-spacing: 1px;">AUTENTICANDO...</p>
+    </div>
 
-<div id="loading">
-    <div class="loader"></div>
-    <p>Verificando acesso...</p>
-</div>
+    <script>
+        function mostrarSenha() {
+            const container = document.getElementById('senha');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+            if(container.style.display === 'flex') {
+                document.getElementById('input').focus();
+            }
+        }
 
-<script>
-function mostrarSenha() {
-    document.getElementById('senha').style.display = 'flex';
-}
+        function entrar() {
+            const senha = document.getElementById('input').value;
+            if(!senha) return;
 
-function entrar() {
-    const senha = document.getElementById('input').value;
+            const prefixo = "a9f3k2x_";
+            const destino = prefixo + senha + ".html";
 
-    const prefixo = "a9f3k2x_";
-    const destino = prefixo + senha + ".html";
+            document.getElementById('loading').style.display = 'flex';
 
-    document.getElementById('loading').style.display = 'flex';
+            setTimeout(() => {
+                window.location.href = destino;
+            }, 1200);
+        }
 
-    setTimeout(() => {
-        window.location.href = destino;
-    }, 1000);
-}
-</script>
+        // Atalho: apertar Enter para entrar
+        document.getElementById('input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                entrar();
+            }
+        });
+    </script>
 
 </body>
 </html>
